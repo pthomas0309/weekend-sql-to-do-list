@@ -14,28 +14,28 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
         [ ] list-item
             [ ] varchar(255)
         [ ] priority
-            [ ] varchar(1)
+            [ ] boolean
         [ ] completed
             [ ] varchar(1)
 
 
 ### [ ] CREATE A TASK
 
-    [ ] INDEX
-        [ ] header
-        [ ] section for task input
-            [ ] input for task details
-            [ ] submit button for task
-            [ ] checkbox for priority events
-        [ ] sections for unfinished tasks
-            [ ] checkbox to mark tasks complete
-                [ ] go-to CSS
-            [ ] button to edit the task info
-            [ ] button to remove the the task section
-        [ ] section for completed tasks
-            [ ] button to bring the completed task back to the list
-            [ ] option a) each completed item appends with a remove button to completely remove it from the database
-            [ ] option b) clear all completed tasks from the database with one button
+    [x] INDEX
+        [x] header
+        [x] section for task input
+            [x] input for task details
+            [x] submit button for task
+            [x] checkbox for priority events
+        [x] sections for unfinished tasks
+            [x] icon to mark tasks complete
+                go-to CSS
+            [x] icon to edit the task info
+            [x] icon to remove the the task section
+        [x] section for completed tasks
+            [x] button to bring the completed task back to the list
+            [null] option a) each completed item appends with a remove button to completely remove it from the database
+            [x] option b) clear all completed tasks from the database with one button
 
     [ ] CLIENT
         [ ] get existing data from server
