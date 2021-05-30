@@ -15,9 +15,18 @@ function readyNow(){
     $('#clearAll').on('click', handleClearCompleted);
     // mark item completed
     $('#uncompleted-tasks').on('click', '.markCompleteBtn', handleCompleted);
+    // take completed list item and move it back to the list of completed items
+    $('#completedList').on('click', '.return-to-list', handleReturn);
 }
 
-function markCompleted(taskId, isCompleted){
+function handleReturn(){
+    console.log('moving task back to the uncompleted list');
+    // take in the id of the item to switch and 
+    // the value to change
+    completeOrNotComplete($(this).data('id'), 'false');
+}
+
+function completeOrNotComplete(taskId, isCompleted){
     $.ajax({
         method: "PUT",
         url: `/tasks/${taskId}`,
@@ -37,7 +46,7 @@ function handleCompleted(){
     console.log('marked complete');
     // take in the id of the task to be marked complete 
     // and the value to change completed to
-    markCompleted($(this).data('id'), 'true');
+    completeOrNotComplete($(this).data('id'), 'true');
 }
 
 function handleClearCompleted(){
@@ -155,7 +164,7 @@ function renderTasks(tasksArray){
             $('#completedList').append(`
                 <div class="completedListItem">
                     <p>${task.list_item}</p>
-                    <button class="return-to-list">Return To List</button>
+                    <button class="return-to-list" data-id="${task.id}">Return To List</button>
                 </div>
             `)
         } else if (task.completed === false){
