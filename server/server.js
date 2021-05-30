@@ -16,7 +16,7 @@ const pool = require('./modules/pool');
 // GET
 app.get('/tasks', (req, res) => {
     // SQL to select table data and display it in order of priority
-    let queryText = 'SELECT * FROM tasks ORDER BY "priority" DESC;'
+    let queryText = 'SELECT * FROM tasks ORDER BY "priority" DESC;';
     pool.query(queryText).then(result => {
         //send data to client
         res.send(result.rows);
@@ -43,6 +43,36 @@ app.post('/tasks', (req, res) => {
 });
 
 // PUT
+//update a task to mark it completed
+app.put('/tasks/:id', (req,res) => {
+    // params mark the id of the task to be updated
+    const taskId = req.params.id;
+    // body id the content to be updated
+    const completeStatus = req.body.completed;
+    // empty queryString allows us to 
+    //change the value based on info we get from client
+    queryString = '';
+    // conditional checks if req.body.completed is true or false
+    if (completeStatus === 'true'){
+        queryString = `UPDATE tasks SET "completed" = 'true' WHERE tasks.id = $1;`;
+    } else if (completeStatus === 'false'){
+        queryString = `UPDATE tasks SET "completed" = 'false' WHERE tasks.id = $1;`;
+    } else {
+        // prevents users from circumventing completed being a boolean
+        res.sendStatus(500);
+        return;
+    };
+    // pool.query runs the update through the DB
+    pool.query(queryString, [taskId])
+    .then(response => {
+        // shows us how many rows have been updated (should be 1)
+        console.log(response.rowCount);
+        res.sendStatus(202);
+    }).catch(err => {
+        console.log('Server error in update', err);
+        res.sendStatus(500);
+    });
+});
 
 // DELETE
 app.delete('/tasks/:id', (req, res) => {
@@ -58,10 +88,10 @@ app.delete('/tasks/:id', (req, res) => {
     }).catch(err => {
         console.log('Server could not process delete', err);
         res.sendStatus(500);
-    })
-})
+    });
+});
 
 //port listener
 app.listen(PORT, () => {
     console.log('RUNNING ON PORT:', PORT);
-})
+});

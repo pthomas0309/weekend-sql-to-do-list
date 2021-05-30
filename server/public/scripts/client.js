@@ -12,7 +12,32 @@ function readyNow(){
     // Delete a task with dynamic event handler
     $('#uncompleted-tasks').on('click', '.trashBtn', handleDelete);
     // clear all completed tasks
-    $('#clearAll').on('click', handleClearCompleted)
+    $('#clearAll').on('click', handleClearCompleted);
+    // mark item completed
+    $('#uncompleted-tasks').on('click', '.markCompleteBtn', handleCompleted);
+}
+
+function markCompleted(taskId, isCompleted){
+    $.ajax({
+        method: "PUT",
+        url: `/tasks/${taskId}`,
+        data: {
+            completed: isCompleted
+        }
+    }).then(response => {
+        // look for the accepted from the server
+        console.log('task complete', response);
+        getTasksData();
+    }).catch(err => {
+        console.log('error marking complete', err);
+    })
+}
+
+function handleCompleted(){
+    console.log('marked complete');
+    // take in the id of the task to be marked complete 
+    // and the value to change completed to
+    markCompleted($(this).data('id'), 'true');
 }
 
 function handleClearCompleted(){
@@ -136,14 +161,14 @@ function renderTasks(tasksArray){
         } else if (task.completed === false){
             $('#uncompleted-tasks').append(`
                 <div class="listItem">
-                    <button class="markCompleteBtn">
+                    <button class="markCompleteBtn" data-id="${task.id}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle"
                             viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                         </svg>
                     </button>
                     <p>${task.list_item}</p>
-                    <button class="editBtn">
+                    <button class="editBtn" data-id="${task.id}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"
                             viewBox="0 0 16 16">
                             <path

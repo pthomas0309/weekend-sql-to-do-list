@@ -44,10 +44,10 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
         [x] append data to dom
             [x] logic to eval if the task is completed or not / if it's a priority
                     [ ] maybe figure out how computers think about time?
-        [ ] grab data from inputs 
-            [ ] create object to simulate table row *see data model
-        [ ] send user data to the server
-            [ ] ajax POST route /tasks
+        [x] grab data from inputs 
+            [x] create object to simulate table row *see data model
+        [x] send user data to the server
+            [x] ajax POST route /tasks
         [ ] COMPLETING A TASK YAAYY
             [ ] let them know that it's cool to complete tasks
                 [ ] see CSS
@@ -55,12 +55,12 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
                 [ ] remove from uncompleted tasks to completed tasks in case of false completion and so you can remember what you've completed
                 [ ] update completion status
                     [ ] ajax PUT call to server
-        [ ] remove tasks from DOM on button click
-            [ ] trash button removes singular uncompleted tasks and clear button removes all completed tasks
-                [ ] communicate to server this needs to be deleted from the database
-                    [ ] ajax DELETE /tasks/taskID
-                    [ ] to clear all completed tasks we will have to loop through every id in the completed tasks div
-                    [ ] re-render the tasks
+        [x] remove tasks from DOM on button click
+            [x] trash button removes singular uncompleted tasks and clear button removes all completed tasks
+                [x] communicate to server this needs to be deleted from the database
+                    [x] ajax DELETE /tasks/taskID
+                    [x] to clear all completed tasks we will have to loop through every id in the completed tasks div
+                    [x] re-render the tasks
         [ ] update task info on button click
             [ ] append a hidden text box to each task that will show when you click edit
             [ ] append submit changes button
@@ -69,15 +69,15 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
             [ ] re-render DOM
 
     [ ] SERVER
-        [ ] set up server
-        [ ] get table data from postico
-            [ ] .get to /tasks
-                [ ] SQL select all the table rows in order of priority
-                [ ] send selection to client
-        [ ] post new tasks as a row in table
-            [ ] .post to /tasks
-                [ ] SQL INSERT INTO to-do-list
-                [ ] sanitize SQL with pool query
+        [x] set up server
+        [x] get table data from postico
+            [x] .get to /tasks
+                [x] SQL select all the table rows in order of priority
+                [x] send selection to client
+        [x] post new tasks as a row in table
+            [x] .post to /tasks
+                [x] SQL INSERT INTO to-do-list
+                [x] sanitize SQL with pool query
         [ ] update table rows
             [ ] for tasks that are completed
                 [ ] .put /tasks/taskID
@@ -89,15 +89,16 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
                 [ ] .put /tasks/taskID
                     [ ] SQL UPDATE list-item
                     [ ] sanitize id
-        [ ] delete table row
-            [ ] remove an uncompleted task
-                [ ] .delete single task by tasks/taskID
-                    [ ] SQL DELETE row
-                    [ ] req.params.id to target id
+        [x] delete table row
+            [x] remove an uncompleted task
+                [x] .delete single task by tasks/taskID
+                    [x] SQL DELETE row
+                    [x] req.params.id to target id
+            [x] clear all completed tasks with button click
 
     [ ] STYLE
         [ ] Bootstrap
-            [ ] long-boi inputs
+            [x] long-boi inputs
             [ ] color change buttons
             [ ] check boxes
         [ ] Color way: retro vibes
