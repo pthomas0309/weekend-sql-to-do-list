@@ -52,23 +52,19 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
             [ ] let them know that it's cool to complete tasks
                 [ ] see CSS
                 [ ] JQ animation?
-                [ ] remove from uncompleted tasks to completed tasks in case of false completion and so you can remember what you've completed
-                [ ] update completion status
-                    [ ] ajax PUT call to server
+                [x] remove from uncompleted tasks to completed tasks in case of false completion and so you can remember what you've completed
+                [x] update completion status
+                    [x] ajax PUT call to server
         [x] remove tasks from DOM on button click
             [x] trash button removes singular uncompleted tasks and clear button removes all completed tasks
                 [x] communicate to server this needs to be deleted from the database
                     [x] ajax DELETE /tasks/taskID
                     [x] to clear all completed tasks we will have to loop through every id in the completed tasks div
                     [x] re-render the tasks
-        [ ] update task info on button click
-            [ ] append a hidden text box to each task that will show when you click edit
-            [ ] append submit changes button
-            [ ] update this in the DB 
-                [ ] ajax PUT /tasks/taskID
-            [ ] re-render DOM
+        [x] edit task info on button click
+            
 
-    [ ] SERVER
+    [x] SERVER
         [x] set up server
         [x] get table data from postico
             [x] .get to /tasks
@@ -78,17 +74,13 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
             [x] .post to /tasks
                 [x] SQL INSERT INTO to-do-list
                 [x] sanitize SQL with pool query
-        [ ] update table rows
-            [ ] for tasks that are completed
-                [ ] .put /tasks/taskID
-                    [ ] req.params.id to target id
-                    [ ] conditional to apply different SQL statements for if a task is complete or not
-                    [ ] SQL UPDATE completed
-                    [ ] sanitize id
-            [ ] to edit the description content for a task
-                [ ] .put /tasks/taskID
-                    [ ] SQL UPDATE list-item
-                    [ ] sanitize id
+        [x] update table rows
+            [x] for tasks that are completed
+                [x] .put /tasks/taskID
+                    [x] req.params.id to target id
+                    [x] conditional to apply different SQL statements for if a task is complete or not
+                    [x] SQL UPDATE completed
+                    [x] sanitize id
         [x] delete table row
             [x] remove an uncompleted task
                 [x] .delete single task by tasks/taskID
