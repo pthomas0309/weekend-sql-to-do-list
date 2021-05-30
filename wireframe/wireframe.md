@@ -117,7 +117,7 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
 ### DATA MODEL
 
     let task = {
-        list-item: userInputValue,
+        list_item: userInputValue,
         priority: boolean, // decided by user toggle
         completed: boolean //default to false
     }
