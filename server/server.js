@@ -48,8 +48,10 @@ app.post('/tasks', (req, res) => {
 app.put('/tasks/:id', (req,res) => {
     // params mark the id of the task to be updated
     const taskId = req.params.id;
+    console.log(taskId);
     // body tells us the value of completed at the row of this id
     const completeStatus = req.body.completed;
+    console.log(completeStatus);
     // empty queryString allows us to 
     //change the value based on info we get from client
     queryString = '';

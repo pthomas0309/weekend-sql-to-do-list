@@ -10,7 +10,7 @@ function readyNow(){
     // follow POST route on submit
     $('#submit').on('click', createTask);
     // Delete a task with dynamic event handler
-    $('#uncompleted-tasks').on('click', '.trashBtn', handleDelete);
+    $('#uncompleted-tasks').on('click', '.trashBtn', validateDelete);
     // clear all completed tasks
     $('#clearAll').on('click', handleClearCompleted);
     // mark item completed
@@ -54,6 +54,13 @@ function completeOrNotComplete(taskId, isCompleted){
 
 function handleCompleted(){
     console.log('marked complete');
+    //sweet alert indicates the task has been completed
+    swal({
+        title: "You completed a task!",
+        text: "Take some time to appreciate your work!",
+        icon: "success",
+        button: "Yay!",
+    });
     // take in the id of the task to be marked complete 
     // and the value to change completed to
     completeOrNotComplete($(this).data('id'), 'true');
@@ -83,9 +90,25 @@ function removeTask(taskId){
 }
 
 // grab the id data from the button
-function handleDelete(){
+function validateDelete(){
     console.log('clicked delete');
-    removeTask($(this).data('id'));
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this task!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Your task has been deleted!", {
+            icon: "success",
+          });
+          removeTask($(this).data('id'));
+        } else {
+          swal("Ok, your task will not be deleted!");
+        }
+      });
 }
 
 // clears input and uncheck checkbox
@@ -172,29 +195,29 @@ function renderTasks(tasksArray){
             completedTaskIds.push(task.id);
             // if task is completed it should append to #completedList
             $('#completedList').append(`
-                <div class="completedListItem">
-                    <p>${task.list_item}</p>
-                    <button class="return-to-list" data-id="${task.id}">Return To List</button>
+                <div class="completedListItem bottom-interface d-grid gap-2">
+                    <p class="subhead ">${task.list_item}</p>
+                    <button class="return-to-list btn btn-outline-dark btn-sm" data-id="${task.id}">Return To List</button>
                 </div>
             `)
         } else if (task.completed === false){
             $('#uncompleted-tasks').append(`
                 <div class="listItem">
-                    <button class="markCompleteBtn" data-id="${task.id}">
+                    <button class="markCompleteBtn btn btn-outline-success btn-sm" data-id="${task.id}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle"
                             viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                         </svg>
                     </button>
-                    <p>${task.list_item}</p>
-                    <button class="editBtn" data-id="${task.id}" data-description="${task.list_item}">
+                    <p class="subhead">${task.list_item}</p>
+                    <button class="editBtn btn btn-outline-secondary btn-sm" data-id="${task.id}" data-description="${task.list_item}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"
                             viewBox="0 0 16 16">
                             <path
                                 d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                         </svg>
                     </button>
-                    <button class="trashBtn" data-id="${task.id}">
+                    <button class="trashBtn btn btn-outline-danger btn-sm" data-id="${task.id}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                             viewBox="0 0 16 16">
                             <path

@@ -37,7 +37,7 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
             [null] option a) each completed item appends with a remove button to completely remove it from the database
             [x] option b) clear all completed tasks from the database with one button
 
-    [ ] CLIENT
+    [x] CLIENT
         [x] get existing data from server
             [x] doc ready run function
                 [x] ajax GET /tasks
@@ -48,10 +48,10 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
             [x] create object to simulate table row *see data model
         [x] send user data to the server
             [x] ajax POST route /tasks
-        [ ] COMPLETING A TASK YAAYY
-            [ ] let them know that it's cool to complete tasks
-                [ ] see CSS
-                [ ] JQ animation?
+        [x] COMPLETING A TASK YAAYY
+            [x] let them know that it's cool to complete tasks
+                [x] see CSS
+                [-] JQ animation?
                 [x] remove from uncompleted tasks to completed tasks in case of false completion and so you can remember what you've completed
                 [x] update completion status
                     [x] ajax PUT call to server
@@ -88,22 +88,22 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
                     [x] req.params.id to target id
             [x] clear all completed tasks with button click
 
-    [ ] STYLE
-        [ ] Bootstrap
+    [x] STYLE
+        [x] Bootstrap
             [x] long-boi inputs
-            [ ] color change buttons
-            [ ] check boxes
+            [x] color change buttons
+            [x] check boxes
         [ ] Color way: retro vibes
-            [ ] Turning to Ash #655643
-            [ ] I am angry #C24D2C
-            [ ] Psenape #DC8D0C
-            [ ] goldenapple #E6AC27
-            [ ] 16 #78BEA2
-        [ ] Font Family import
-            [ ] DINosaur <link rel="stylesheet" href="https://use.typekit.net/pbz8zil.css">
-            [ ] Zeitung <link rel="stylesheet" href="https://use.typekit.net/pbz8zil.css">
-        [ ] class for uncompleted task
-        [ ] class for completed task
+            [x] quars #89A194
+            [x] spztr #322938
+            [x] Turning to Ash #655643
+            [x] I am angry #C24D2C
+            [x] Psenape #DC8D0C
+            [x] goldenapple #E6AC27
+            [x] 16 #78BEA2
+        [x] Font Family import
+            [x] DINosaur <link rel="stylesheet" href="https://use.typekit.net/pbz8zil.css">
+            [x] Zeitung <link rel="stylesheet" href="https://use.typekit.net/pbz8zil.css">
 
 
 
