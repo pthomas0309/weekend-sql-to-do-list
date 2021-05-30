@@ -5,7 +5,37 @@ $(readyNow);
 function readyNow(){
     console.log('JQ sourced');
     getTasksData();
+    // follow POST route on submit
     $('#submit').on('click', createTask);
+    // Delete a task with dynamic event handler
+    $('#uncompleted-tasks').on('click', '.trashBtn', handleDelete)
+}
+
+// this will take in a task id and call ajax to take the DELETE route to server
+function removeTask(taskId){
+    $.ajax({
+        method: 'DELETE',
+        url: `tasks/${taskId}`
+    }).then(response => {
+        // recieve ok from server to the tasks deleted
+        console.log('removal successful', response);
+        // get the data back from the database after delete
+        getTasksData();
+    }).catch(err => {
+        swal('Issue removing task item. Please try again.');
+    })
+}
+
+// grab the id data from the button
+function handleDelete(){
+    console.log('clicked delete');
+    removeTask($(this).data('id'));
+}
+
+// clears input and uncheck checkbox
+function clearForm(){
+    $('#listItemIn').val('');
+    $('#prioritize').prop('checked', false);
 }
 
 // function to call on an ajax POST route that will 
@@ -18,6 +48,8 @@ function addToTaskList(taskToAdd){
     }).then(response => {
         // looking for ok from server
         console.log('Steve Harvey: Server says:', response);
+        // clear inputs and checkbox
+        clearForm();
         // call on our function that retrieves DB from server and render DOM
         getTasksData();
     }).catch(err => {
@@ -90,21 +122,21 @@ function renderTasks(tasksArray){
         } else if (task.completed === false){
             $('#uncompleted-tasks').append(`
                 <div class="listItem">
-                    <button id="markCompleteBtn">
+                    <button class="markCompleteBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle"
                             viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                         </svg>
                     </button>
                     <p>${task.list_item}</p>
-                    <button id="editBtn">
+                    <button class="editBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"
                             viewBox="0 0 16 16">
                             <path
                                 d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
                         </svg>
                     </button>
-                    <button id="trashBtn">
+                    <button class="trashBtn" data-id="${task.id}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                             viewBox="0 0 16 16">
                             <path
