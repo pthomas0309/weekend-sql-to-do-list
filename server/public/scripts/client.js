@@ -17,6 +17,16 @@ function readyNow(){
     $('#uncompleted-tasks').on('click', '.markCompleteBtn', handleCompleted);
     // take completed list item and move it back to the list of completed items
     $('#completedList').on('click', '.return-to-list', handleReturn);
+    // edit the list_item
+    $('#uncompleted-tasks').on('click', '.editBtn', handleEdit)
+}
+
+function handleEdit(){
+    console.log('editing task');
+    //take the task description from button data and put that value in the task input
+    let editDescription = $(this).data('description');
+    $('#listItemIn').val(editDescription);
+    removeTask($(this).data('id'));
 }
 
 function handleReturn(){
@@ -177,7 +187,7 @@ function renderTasks(tasksArray){
                         </svg>
                     </button>
                     <p>${task.list_item}</p>
-                    <button class="editBtn" data-id="${task.id}">
+                    <button class="editBtn" data-id="${task.id}" data-description="${task.list_item}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil"
                             viewBox="0 0 16 16">
                             <path

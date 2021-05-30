@@ -25,6 +25,7 @@ app.get('/tasks', (req, res) => {
         res.sendStatus(500);
     });
 });
+
 // POST
 app.post('/tasks', (req, res) => {
     // variable newTask should be an object that follows our data model 
@@ -47,7 +48,7 @@ app.post('/tasks', (req, res) => {
 app.put('/tasks/:id', (req,res) => {
     // params mark the id of the task to be updated
     const taskId = req.params.id;
-    // body id the content to be updated
+    // body tells us the value of completed at the row of this id
     const completeStatus = req.body.completed;
     // empty queryString allows us to 
     //change the value based on info we get from client
