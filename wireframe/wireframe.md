@@ -5,18 +5,18 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
   - font family and size
   - text color & or background color of tasks
 
-### [ ] MAKE A TABLE
+### [x] MAKE A TABLE
 
-    [ ] name `weekend-to-do-app`
-    [ ] ROWS 
-        [ ] id
-            [ ] SERIAL
-        [ ] list-item
-            [ ] varchar(255)
-        [ ] priority
-            [ ] boolean
-        [ ] completed
-            [ ] varchar(1)
+    [x] name `weekend-to-do-app`
+    [x] ROWS 
+        [x] id
+            [x] SERIAL
+        [x] list-item
+            [x] varchar(255)
+        [x] priority
+            [x] boolean
+        [x] completed
+            [x] boolean
 
 
 ### [ ] CREATE A TASK
@@ -69,6 +69,7 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
             [ ] re-render DOM
 
     [ ] SERVER
+        [ ] set up server
         [ ] get table data from postico
             [ ] .get to /tasks
                 [ ] SQL select all the table rows in order of priority
