@@ -2,13 +2,25 @@ console.log('js sourced');
 
 $(readyNow);
 
+const completedTaskIds = [];
+
 function readyNow(){
     console.log('JQ sourced');
     getTasksData();
     // follow POST route on submit
     $('#submit').on('click', createTask);
     // Delete a task with dynamic event handler
-    $('#uncompleted-tasks').on('click', '.trashBtn', handleDelete)
+    $('#uncompleted-tasks').on('click', '.trashBtn', handleDelete);
+    // clear all completed tasks
+    $('#clearAll').on('click', handleClearCompleted)
+}
+
+function handleClearCompleted(){
+    console.log(completedTaskIds);
+    // loop through the list and grab all the id's of the tasks to clear
+    for (let taskId of completedTaskIds){
+        removeTask(taskId);
+    };
 }
 
 // this will take in a task id and call ajax to take the DELETE route to server
@@ -112,7 +124,9 @@ function renderTasks(tasksArray){
     for (let task of tasksArray){
         //conditional checks if tasks are marked completed or not
         if (task.completed === true){
-            //if task is completed it should append to #completedList
+            // push the id's of the completed tasks into an array so we can clear them later
+            completedTaskIds.push(task.id);
+            // if task is completed it should append to #completedList
             $('#completedList').append(`
                 <div class="completedListItem">
                     <p>${task.list_item}</p>
