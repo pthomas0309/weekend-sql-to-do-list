@@ -2,8 +2,8 @@
 const express = require('express');
 //get body parser
 const bodyParser = require('body-parser');
-//run on port 5000
-const PORT = 5000;
+//run on port 5000 or whatever heroku decides
+const PORT = process.env.PORT || 5000;
 //make server
 const app = express();
 //serve static files
