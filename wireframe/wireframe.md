@@ -39,8 +39,8 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
 
     [ ] CLIENT
         [ ] get existing data from server
-            [ ] doc ready run function
-                [ ] ajax GET /tasks
+            [x] doc ready run function
+                [x] ajax GET /tasks
         [ ] append data to dom
             [ ] logic to eval if the task is completed or not / if it's a priority
                     [ ] maybe figure out how computers think about time?
