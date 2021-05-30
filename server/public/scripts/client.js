@@ -8,6 +8,24 @@ function readyNow(){
     $('#submit').on('click', createTask);
 }
 
+// function to call on an ajax POST route that will 
+// send a new task object to the server and send back an ok
+function addToTaskList(taskToAdd){
+    $.ajax({
+        method: 'POST',
+        url: '/tasks',
+        data: taskToAdd
+    }).then(response => {
+        // looking for ok from server
+        console.log('Steve Harvey: Server says:', response);
+        // call on our function that retrieves DB from server and render DOM
+        getTasksData();
+    }).catch(err => {
+        console.log('POST error', err);
+        swal('PDA unable to add task. Please try again.');
+    })
+}
+
 // DATA MODEL
 // let task = {
 //     list_item: userInputValue,
@@ -35,8 +53,9 @@ function createTask(){
     task.priority = handleCheckbox();
     // completed will default to false
     task.completed = false;
-
     console.log(task);
+    // send this data to the server
+    addToTaskList(task);
 }
 
 // this will take in the incoming table information

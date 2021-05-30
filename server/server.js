@@ -26,6 +26,21 @@ app.get('/tasks', (req, res) => {
     });
 });
 // POST
+app.post('/tasks', (req, res) => {
+    // variable newTask should be an object that follows our data model 
+    let newTask = req.body;
+    // SQL insert new table row
+    let queryText = `INSERT INTO tasks ("list_item", "priority", "completed")
+    VALUES ($1, $2, $3);`;
+    // don't forget to sanitize your data (and your hands)
+    pool.query(queryText, [newTask.list_item, newTask.priority, newTask.completed])
+    .then(result => {
+        res.sendStatus(201);
+    }).catch(err => {
+        console.log('Server error while adding book', err);
+        res.sendStatus(500);
+    });
+});
 
 // PUT
 
