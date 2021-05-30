@@ -64,7 +64,7 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
         [x] edit task info on button click
             
 
-    [ ] SERVER
+    [x] SERVER
         [x] set up server
         [x] get table data from postico
             [x] .get to /tasks
