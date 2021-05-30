@@ -45,6 +45,21 @@ app.post('/tasks', (req, res) => {
 // PUT
 
 // DELETE
+app.delete('/tasks/:id', (req, res) => {
+    // this will delete a targeted task by its id
+    // the request will have the parameter to target the id
+    const taskToDelete = req.params.id;
+    const queryString = `DELETE FROM tasks WHERE tasks.id = $1;`;
+    pool.query(queryString, [taskToDelete])
+    .then(response => {
+        console.log(`Deleted task at ${taskToDelete}`);
+        // send client the ok once task is deleted
+        res.sendStatus(200);
+    }).catch(err => {
+        console.log('Server could not process delete', err);
+        res.sendStatus(500);
+    })
+})
 
 //port listener
 app.listen(PORT, () => {

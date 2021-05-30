@@ -8,6 +8,12 @@ function readyNow(){
     $('#submit').on('click', createTask);
 }
 
+// clears input and uncheck checkbox
+function clearForm(){
+    $('#listItemIn').val('');
+    $('#prioritize').prop('checked', false);
+}
+
 // function to call on an ajax POST route that will 
 // send a new task object to the server and send back an ok
 function addToTaskList(taskToAdd){
@@ -18,6 +24,8 @@ function addToTaskList(taskToAdd){
     }).then(response => {
         // looking for ok from server
         console.log('Steve Harvey: Server says:', response);
+        // clear inputs and checkbox
+        clearForm();
         // call on our function that retrieves DB from server and render DOM
         getTasksData();
     }).catch(err => {
