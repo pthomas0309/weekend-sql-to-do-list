@@ -5,8 +5,40 @@ $(readyNow);
 function readyNow(){
     console.log('JQ sourced');
     getTasksData();
-    // $('#submit').on('click', checkSwal);
+    $('#submit').on('click', createTask);
 }
+
+// DATA MODEL
+// let task = {
+//     list_item: userInputValue,
+//     priority: boolean, // decided by user toggle
+//     completed: boolean //default to false
+// }
+
+// function to check if the priority checkbox is checked or not
+function handleCheckbox(){
+    // conditional to return different values
+    if ($('#prioritize').prop('checked') === true){
+        console.log('checkbox is checked');
+        return true;
+    } else if ($('#prioritize').prop('checked') === false){
+        console.log('checkbox is not checked');
+        return false;
+    };
+}
+
+// function to create object to send to server
+function createTask(){
+    let task = {};
+    task.list_item = $('#listItemIn').val();
+    // have to define prioritize with a method
+    task.priority = handleCheckbox();
+    // completed will default to false
+    task.completed = false;
+
+    console.log(task);
+}
+
 // this will take in the incoming table information
 function getTasksData(){
     $.ajax({

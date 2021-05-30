@@ -38,11 +38,11 @@ Use CSS styling to move the aesthetic of the page beyond the vanilla HTML look:
             [x] option b) clear all completed tasks from the database with one button
 
     [ ] CLIENT
-        [ ] get existing data from server
+        [x] get existing data from server
             [x] doc ready run function
                 [x] ajax GET /tasks
-        [ ] append data to dom
-            [ ] logic to eval if the task is completed or not / if it's a priority
+        [x] append data to dom
+            [x] logic to eval if the task is completed or not / if it's a priority
                     [ ] maybe figure out how computers think about time?
         [ ] grab data from inputs 
             [ ] create object to simulate table row *see data model
