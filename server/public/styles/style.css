@@ -2,6 +2,11 @@ body {
     background-color: #ff2975;
 }
 
+.center {
+    margin: auto;
+    width: 50%;
+}
+
 .outer {
     background-color: #322938;
     margin: 26em;
